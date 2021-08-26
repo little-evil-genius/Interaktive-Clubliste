@@ -1,5 +1,6 @@
 # Interaktive-Clubliste 1.0
 Dieses Plugin erweitert das Board um eine interaktive Clubliste. Ausgewählte Usergruppen können neue Clubs hinzufügen und Clubs beitreten. Um einen Club hinzufügen zu können, wird ein aussagekräftiger Titel, eine Zeitangabe, eine Beschreibung, ein Leiter und eine Einordnung in eine Kategorie benötigt. Clubs müssen vom Team erst freigeschaltet werden im Mod-CP. Clubs vom Team werden automatisch freigeschaltet. Nach der Freischaltung können User sich mit ihren Accounts als Mitglieder der Clubs eintragen. Sie können sich, wenn nicht anders eingestellt im ACP in so viele Clubs eintragen wollen, wie sie möchten. Ersteller das Clubs und das Team können die Clubs bearbeiten und löschen. Zusätzlich werden die Clubmitgliedschaften im Profil angezeigt, unterteilt in Mitgliedschaften und Leitungspositionen.
+Beim Erstellen eines Clubs kann ausgewählt werden, ob dieser Club mit Positionen arbeiten zB Quarterback bei einem Football Team. Diese Position muss dann per Popup-Fenster beim eintreten angegeben werden. 
 
 # Datenbank-Änderungen
 Hinzugefügte Tabellen:
