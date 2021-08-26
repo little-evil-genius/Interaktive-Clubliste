@@ -559,7 +559,7 @@ function clublist_install()
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<input type="submit" name="join_position" id="submit" class="button" value="{$lang->clublist_join_send}">
+						<input type="submit" name="join_position" id="submit" class="button" value="{$lang->clublist_join_position_send}">
 					</td>
 				</tr>
 			</tbody>
