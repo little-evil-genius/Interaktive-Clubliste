@@ -554,7 +554,7 @@ function clublist_install()
 				</tr>
 				<tr>
 					<td>
-						<input type="text" class="textbox" name="position" id="position" style="width: 98%;" value="{$lang->clublist_join_position_desc}" required>
+						<input type="text" class="textbox" name="position" id="position" style="width: 98%;" placeholder="{$lang->clublist_join_position_desc}" required>
 					</td>
 				</tr>
 				<tr>
