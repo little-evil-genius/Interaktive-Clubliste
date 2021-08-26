@@ -10,7 +10,7 @@ $l['clublist_add_conductor'] = 'Leitung';
 $l['clublist_add_position'] = 'Positionsmöglichkeit';
 $l['clublist_add_type'] = 'Kategorie vom Club';
 $l['clublist_add_desc'] = 'Beschreibung vom Club';
-$l['clublist_add_desc_desc'] = 'Eine ausführliche Beschreibung vom Club. Maximale Zeichenanzahl beträgt 5000 Zeichen.';
+$l['clublist_add_desc_desc'] = 'Eine ausführliche Beschreibung vom Club. Die maximale Zeichenanzahl beträgt 5000 Zeichen.';
 $l['clublist_add_send'] = 'Neuen Club hinzufügen';
 
 $l['clublist_edit'] = 'Club bearbeiten';
