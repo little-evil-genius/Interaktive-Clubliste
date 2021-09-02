@@ -42,6 +42,10 @@ Hinzugefügte Tabellen:
 - Anzahl der Clubs (Multipage-Navigation)
 - Listen PHP (Navigation Ergänzung)
 
+# Links
+- euerforum.de/misc.php?action=clublist
+- euerforum.de/modcp.php?action=clublist
+
 # Demo
 Clubübersicht
   <img src="https://www.bilder-hochladen.net/files/big/m4bn-8x-511a.png" />
