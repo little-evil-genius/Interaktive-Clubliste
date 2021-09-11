@@ -90,7 +90,7 @@ function clublist_install()
         
     $setting_array = array(
         'clublist_add_allow_groups' => array(
-            'title' => 'Erlaubte Gruppen',
+            'title' => 'Erlaubte Gruppen Hinzufügen',
             'description' => 'Welche Gruppen dürfen neue Clubs erstellen?',
             'optionscode' => 'groupselect',
             'value' => '4', // Default
@@ -98,7 +98,7 @@ function clublist_install()
         ),
 
         'clublist_member_allow_groups' => array(
-            'title' => 'Erlaubte Gruppen',
+            'title' => 'Erlaubte Gruppen Beitreten',
             'description' => 'Welche Gruppen dürfen sich als Mitglied eintragen?',
             'optionscode' => 'groupselect',
             'value' => '4', // Default
@@ -106,8 +106,8 @@ function clublist_install()
         ),
 
         'clublist_type' => array(
-            'title' => 'Bereiche',
-            'description' => 'In welche Bereiche können die Clubs eingeordnet werden?',
+            'title' => 'Kategorien',
+            'description' => 'In welche Kategorien können die Clubs eingeordnet werden?',
             'optionscode' => 'text',
             'value' => 'Schulclubs, Clubs, Vereine, Ehrenämter', // Default
             'disporder' => 3
@@ -928,7 +928,7 @@ function clublist_global(){
 
 // DIE SEITEN
 function clublist_misc() {
-    global $db, $cache, $mybb, $lang, $templates, $theme, $header, $headerinclude, $footer, $club_add, $club_bit, $joinlink, $position_join, $type_select;
+    global $db, $cache, $mybb, $lang, $templates, $theme, $header, $headerinclude, $footer, $club_add, $club_bit, $joinlink, $position_join, $type_select, $join;
 
     // SPRACHDATEI LADEN
     $lang->load('clublist');
@@ -1155,6 +1155,8 @@ function clublist_misc() {
             AND cid = '$cid'
             "), "checked");
 
+			$position_join = "";
+			$join = "";
 			// BEGRENZTE MITGLIEDSCHAFT
 			if ($clublist_limit_setting == 1) {
 				// Unter dem Limit - kann beitreten
@@ -1167,15 +1169,21 @@ function clublist_misc() {
 						$join = "<a onclick=\"$('#position_{$cid}').modal({ fadeDuration: 250, keepelement: true, zIndex: (typeof modal_zindex !== 'undefined' ? modal_zindex : 9999) }); return false;\" style=\"cursor: pointer;\"><i class=\"fas fa-user-plus\" original-title=\"Club beitreten\"></i></a>";
 						$joinlink = "{$join}<div class=\"modal\" id=\"position_{$cid}\" style=\"display: none;width:auto;\">{$position_join}</div>";
 					} else {
+						$position_join = "";
+						$join = "";
 						$joinlink = "<a href=\"misc.php?action=clublist&join={$cid}\"><i class=\"fas fa-user-plus\" original-title=\"Club beitreten\"></i></a>";
 					}
 				}
 				// Limit erreicht - kann nicht beitreten
 				elseif (!$check && $count_user == $clublist_limit_number_setting) {
+					$position_join = "";
+				    $join = "";
 					$joinlink = "";	
 				}
 				// Austreten
 				else {
+					$position_join = "";
+				    $join = "";
 					$joinlink = "<a href=\"misc.php?action=clublist&leave={$cid}\"><i class=\"fas fa-sign-out-alt\" original-title=\"Club verlassen\"></i></a>";
 				}
 			} 
@@ -1191,15 +1199,21 @@ function clublist_misc() {
 						$join = "<a onclick=\"$('#position_{$cid}').modal({ fadeDuration: 250, keepelement: true, zIndex: (typeof modal_zindex !== 'undefined' ? modal_zindex : 9999) }); return false;\" style=\"cursor: pointer;\"><i class=\"fas fa-user-plus\" original-title=\"Club beitreten\"></i></a>";
 						$joinlink = "{$join}<div class=\"modal\" id=\"position_{$cid}\" style=\"display: none;width:auto;\">{$position_join}</div>";
 					} else {
+						$position_join = "";
+						$join = "";
 						$joinlink = "<a href=\"misc.php?action=clublist&join={$cid}\"><i class=\"fas fa-user-plus\" original-title=\"Club beitreten\"></i></a>";
 					}
 				} 
 				// Austreten
 				else {
+					$position_join = "";
+					$join = "";
 					$joinlink = "<a href=\"misc.php?action=clublist&leave={$cid}\"><i class=\"fas fa-sign-out-alt\" original-title=\"Club verlassen\"></i></a>";
 				}
 			} 
 			else {
+				$position_join = "";
+				$join = "";
 				$joinlink = "";
 			}
 	  }
