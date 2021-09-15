@@ -1347,13 +1347,19 @@ function clublist_misc() {
 
 	 $conductor_user = get_user_by_username($conductor, array('fields' => '*'));
      $conductor = $conductor_user['uid'];
+		
+		if ($conductor == '') {
+        $conductor_add = '0';
+     } else {
+        $conductor_add = $conductor_user['uid'];
+     }
 
 		$new_club = array(
 			"type" => $type,
 			"clubname" => $clubname,
 			"clubtime" => $clubtime,
 			"clubtext" => $clubtext,
-			"conductor" => $conductor,
+			"conductor" => $conductor_add,
 			"position" => $position,
 			"createdby" => (int)$mybb->user['uid'],
 			"accepted" => $accepted
