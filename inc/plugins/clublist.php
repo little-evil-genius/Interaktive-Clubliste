@@ -26,6 +26,8 @@ if(class_exists('MybbStuff_MyAlerts_AlertTypeManager')) {
 }
 // Profil
 $plugins->add_hook("member_profile_end", "clublist_memberprofile");
+// Postbit
+$plugins->add_hook("postbit", "clublist_postbit");
 
 // Die Informationen, die im Pluginmanager angezeigt werden
 function clublist_info()
@@ -743,6 +745,40 @@ function clublist_install()
 	$db->insert_query("templates", $insert_array);
 
 
+	// Postbit
+	$insert_array = array(
+		'title'        => 'clublist_postbit',
+		'template'    => $db->escape_string('<div class="author_statistics">
+        {$post[\'postbit_clubs_bit\']}
+{$post['postbit_clubs_bit_none\']}
+    </div>'),
+		'sid'        => '-1',
+		'version'    => '',
+		'dateline'    => TIME_NOW
+	);
+	$db->insert_query("templates", $insert_array);
+
+
+	// Postbit - Einzelner Club
+	$insert_array = array(
+		'title'        => 'clublist_postbit_bit',
+		'template'    => $db->escape_string('<b>{$post[\'clubname\']} ({$post[\'type\']}):</b> {$post[\'clubtime\']} {$post[\'position\']}<br>'),
+		'sid'        => '-1',
+		'version'    => '',
+		'dateline'    => TIME_NOW
+	);
+	$db->insert_query("templates", $insert_array);
+
+
+	// Postbit - In keinem Club
+	$insert_array = array(
+		'title'        => 'clublist_postbit_bit_none',
+		'template'    => $db->escape_string('Ist kein Mitglied in einem Club!'),
+		'sid'        => '-1',
+		'version'    => '',
+		'dateline'    => TIME_NOW
+	);
+	$db->insert_query("templates", $insert_array);
 }
  
 // Funktion zur Überprüfung des Installationsstatus; liefert true zurürck, wenn Plugin installiert, sonst false (optional).
@@ -818,6 +854,8 @@ function clublist_activate()
     find_replace_templatesets('member_profile', '#'.preg_quote('{$awaybit}').'#', '{$awaybit} {$member_profile_clubs}');
 	find_replace_templatesets('header', '#'.preg_quote('{$bbclosedwarning}').'#', '{$new_club_alert} {$bbclosedwarning}');
 	find_replace_templatesets('modcp_nav_users', '#'.preg_quote('{$nav_ipsearch}').'#', '{$nav_ipsearch} {$nav_clublist}');
+	find_replace_templatesets('postbit_classic', '#'.preg_quote('<div class="author_statistics">{$post[\'user_details\']}').'#', '{$post[\'postbit_clubs\']} <div class="author_statistics">{$post[\'user_details\']}');
+	find_replace_templatesets('postbit', '#'.preg_quote('<div class="author_statistics">{$post[\'user_details\']}').'#', '{$post[\'postbit_clubs\']} <div class="author_statistics">{$post[\'user_details\']}');
 }
  
 // Diese Funktion wird aufgerufen, wenn das Plugin deaktiviert wird.
@@ -830,6 +868,8 @@ function clublist_deactivate()
     find_replace_templatesets("header", "#".preg_quote('{$new_club_alert}')."#i", '', 0);
     find_replace_templatesets("member_profile", "#".preg_quote('{$member_profile_clubs}')."#i", '', 0);
     find_replace_templatesets("modcp_nav_users", "#".preg_quote('{$nav_clublist}')."#i", '', 0);
+    find_replace_templatesets("postbit_classic", "#".preg_quote('{$post[\'user_details\']}')."#i", '', 0);
+    find_replace_templatesets("postbit", "#".preg_quote('{$post[\'user_details\']}')."#i", '', 0);
 
     // MyALERT STUFF
     if (class_exists('MybbStuff_MyAlerts_AlertTypeManager')) {
@@ -1767,4 +1807,59 @@ function clublist_memberprofile() {
 	 }
 
 	   eval("\$member_profile_clubs .= \"".$templates->get("clublist_memberprofile")."\";");
+}
+
+// ANZEIGE IM POSTBIT
+function clublist_postbit(&$post){
+
+	global $templates, $db, $mybb;
+
+	// ABFRAGE - MITGLIEDSCHAFTEN
+	$post_query = $db->query("SELECT * FROM ".TABLE_PREFIX."clubs_user cu
+        LEFT JOIN ".TABLE_PREFIX."clubs c
+        ON (cu.cid = c.cid) 
+        WHERE cu.uid = '".$post['uid']."' 
+		OR c.conductor = '".$post['uid']."'
+    ");
+
+	   // Keine Mitgliedschaten  
+	   eval("\$post['postbit_clubs_bit_none'] = \"".$templates->get("clublist_postbit_bit_none")."\";");
+
+	// AUSGABE - MITGLIEDSCHAFTEN
+	while($postbit = $db->fetch_array($post_query)){
+
+		$post['postbit_clubs_bit_none'] = "";
+
+		// Alles leer laufen lassen
+		$post['cid'] = "";
+		$post['type'] = "";
+		$post['clubname'] = "";
+		$post['clubtime'] = "";
+  
+		// Füllen wir mal alles mit Informationen
+		$post['cid'] = $postbit['cid'];
+		$post['type'] = $postbit['type'];
+		$post['clubname'] = $postbit['clubname'];
+		$post['clubtime'] = $postbit['clubtime'];
+
+		// Position auslesen, wenn eingetragen
+		$pos_query = $db->query("SELECT * FROM ".TABLE_PREFIX."clubs_user
+        WHERE cid = '$post[cid]'
+		");
+		while($pos = $db->fetch_array($pos_query)){
+			if(!empty($pos['position'])){
+				$post['position'] = "- $pos[position]";
+			} else{
+				$post['position'] = "";
+			}
+		}
+
+		eval("\$post['postbit_clubs_bit'] .= \"".$templates->get("clublist_postbit_bit")."\";");
+	   }
+
+	   if ($post['uid'] == 0){
+		$post['postbit_clubs'] = "";
+	   } else {
+		eval("\$post['postbit_clubs'] .= \"".$templates->get("clublist_postbit")."\";");
+	   }
 }
