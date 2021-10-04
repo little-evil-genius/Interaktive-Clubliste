@@ -1852,6 +1852,7 @@ function clublist_postbit(&$post){
 		// Position auslesen, wenn eingetragen
 		$pos_query = $db->query("SELECT * FROM ".TABLE_PREFIX."clubs_user
         WHERE cid = '$post[cid]'
+	AND uid = '".$post['uid']."'
 		");
 		while($pos = $db->fetch_array($pos_query)){
 			if(!empty($pos['position'])){
