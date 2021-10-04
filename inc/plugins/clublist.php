@@ -1484,7 +1484,7 @@ function clublist_modcp() {
 	 ORDER BY clubname ASC
 	 ");
 
-	 // WOHNORT AUSLESEN
+	 // CLUBS AUSLESEN
      while($modcp = $db->fetch_array($mod)) {
    
         // Alles leer laufen lassen
@@ -1771,6 +1771,7 @@ function clublist_memberprofile() {
 		// Position auslesen, wenn eingetragen
 		$pos_query = $db->query("SELECT * FROM ".TABLE_PREFIX."clubs_user
         WHERE cid = '$cid'
+		AND uid = '".$uid."'
 		");
 		while($pos = $db->fetch_array($pos_query)){
 			if(!empty($pos['position'])){
