@@ -750,7 +750,7 @@ function clublist_install()
 		'title'        => 'clublist_postbit',
 		'template'    => $db->escape_string('<div class="author_statistics">
         {$post[\'postbit_clubs_bit\']}
-{$post['postbit_clubs_bit_none\']}
+{$post[\'postbit_clubs_bit_none\']}
     </div>'),
 		'sid'        => '-1',
 		'version'    => '',
