@@ -47,32 +47,30 @@ Hinzugefügte Tabellen:
 - euerforum.de/modcp.php?action=clublist
 
 # Demo
-Clubübersicht
-  <img src="https://www.bilder-hochladen.net/files/big/m4bn-8x-511a.png" />
+Clubübersicht<p>
+  <img src="https://stormborn.at/plugins/clublist_uebersicht.png" />
   
-Maske beim Hinzufügen
-  <img src="https://www.bilder-hochladen.net/files/big/m4bn-8y-39e1.png" />
+Maske beim Hinzufügen<p>
+  <img src="https://stormborn.at/plugins/clublist_add.png" />
   
-Team-Alert auf dem Index
-  <img src="https://www.bilder-hochladen.net/files/m4bn-90-bb70.png" />
+Team-Alert auf dem Index<p>
+  <img src="https://stormborn.at/plugins/clublist_alert.png" />
   
-Mod-CP
-  <img src="https://www.bilder-hochladen.net/files/big/m4bn-93-dcdb.png" />
+Mod-CP<p>
+  <img src="https://stormborn.at/plugins/clublist_modcp.png" />
   
-Club beitreten mit Position
+Club beitreten mit Position<p>
+  <img src="https://stormborn.at/plugins/clublist_position.png" />
+  
+Club bearbeiten<p>
+  <img src="https://stormborn.at/plugins/clublist_edit.png" />
+  
+Clubs im Profil<p>
+  <img src="https://stormborn.at/plugins/clublist_profil.png" />
+  <img src="https://stormborn.at/plugins/clublist_profilnone.png" />
 
-  <img src="https://www.bilder-hochladen.net/files/m4bn-92-5a1d.png" />
-  
-Club bearbeiten
-  <img src="https://www.bilder-hochladen.net/files/big/m4bn-91-f756.png" />
-  
-Clubs im Profil
-  <img src="https://www.bilder-hochladen.net/files/m4bn-94-09ac.png" />
-  <img src="https://www.bilder-hochladen.net/files/m4bn-95-57d1.png" />
-
-Alerts Beanachrichtigung
-
-  <img src="https://www.bilder-hochladen.net/files/m4bn-8w-d2ec.png" />
+Alerts Beanachrichtigung<p>
+  <img src="https://stormborn.at/plugins/clublist_alerts.png" />
 
 # Support
 Wie viele von euch wissen, bin ich noch kein wirklicher Profi und habe auch noch nicht allzu viele Plugins geschrieben, somit ist teilweise mein Wissen auch begrenzt und ich weiß nicht immer sofort eine Lösung. 
