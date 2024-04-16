@@ -1818,6 +1818,8 @@ function clublist_memberprofile() {
 
 // ANZEIGE IM POSTBIT
 function clublist_postbit(&$post){
+	$post['postbit_clubs_bit'] = '';
+$post['postbit_clubs'] = ''; 
 
 	global $templates, $db, $mybb;
 
