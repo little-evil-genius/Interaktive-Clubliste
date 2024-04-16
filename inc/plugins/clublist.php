@@ -956,7 +956,7 @@ function clublist_global(){
         where accepted = 0
         ");
 
-    $count_clubs = mysqli_num_rows($select_clubs);
+    $count_clubs = $db->num_rows($select_clubs);
      
      if( $mybb->usergroup['canmodcp'] == "1" && $count_clubs == "1"){
          $new_club_alert = "<div class=\"red_alert\"><a href=\"modcp.php?action=clublist\">{$count_clubs} neuer Club muss freigeschaltet werden</a></div>";
@@ -968,7 +968,7 @@ function clublist_global(){
 
 // DIE SEITEN
 function clublist_misc() {
-    global $db, $cache, $mybb, $lang, $templates, $theme, $header, $headerinclude, $footer, $club_add, $club_bit, $joinlink, $position_join, $type_select, $join;
+    global $db, $cache, $mybb, $lang, $templates, $theme, $header, $headerinclude, $footer, $club_add, $club_bit, $joinlink, $position_join, $type_select, $join, $page;
 
     // SPRACHDATEI LADEN
     $lang->load('clublist');
@@ -1044,7 +1044,7 @@ function clublist_misc() {
 
 	$type_url = htmlspecialchars_uni("misc.php?action=clublist&type={$ctype}");
 
-    $count = mysqli_num_rows($select_clubs);
+    $count = $db->num_rows($select_clubs);
 	$perpage = $clublist_multipage_show_setting;
 	$page = intval($mybb->input['page']);
 	if($page) {
@@ -1185,7 +1185,7 @@ function clublist_misc() {
         WHERE cu.uid = '$user_id'
         ");
         // ZÄHLEN
-        $count_user = mysqli_num_rows($select_user);
+        $count_user = $db->num_rows($select_user);
 
 
 		// Options-Link bilden
@@ -1552,7 +1552,7 @@ function clublist_modcp() {
            }
        }
 
-      $db->delete_query("clubs", "cid = '$del'");
+      $db->delete_query("clubs", "cid = '$dec'");
       redirect("modcp.php?action=clublist", "{$lang->clublist_modcp_declined_redirect}");    
      }
 
