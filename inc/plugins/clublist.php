@@ -38,7 +38,7 @@ function clublist_info()
 		"website"	=> "https://github.com/little-evil-genius/Interaktive-Clubliste",
 		"author"	=> "little.evil.genius",
 		"authorsite"	=> "https://storming-gates.de/member.php?action=profile&uid=1712",
-		"version"	=> "1.0",
+		"version"	=> "1.0.1",
 		"compatibility" => "18*"
 	);
 }
@@ -895,7 +895,7 @@ function clublist_settings_change()
 
     $result = $db->simple_select('settinggroups', 'gid', "name='clublist'", array("limit" => 1));
     $group = $db->fetch_array($result);
-    $clublist_settings_peeker = ($mybb->input['gid'] == $group['gid']) && ($mybb->request_method != 'post');
+    $clublist_settings_peeker = ($mybb->get_input('gid') == $group['gid']) && ($mybb->request_method != 'post');
 }
 function clublist_settings_peek(&$peekers)
 {
